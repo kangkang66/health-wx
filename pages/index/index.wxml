@@ -1,0 +1,168 @@
+<!--index.wxml-->
+<cu-custom bgImage="https://image.weilanwl.com/color2.0/plugin/sylb2244.jpg" >
+  <view slot="content">今日营养</view>
+</cu-custom>
+
+
+<view class="cu-bar search bg-white">
+  <view class="cu-avatar round" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);"></view>
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" placeholder="肉包子" confirm-type="search"></input>
+  </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom ">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text>营养数据
+  </view>
+
+  <view class="action">
+    <button class="cu-btn bg-white shadow" bindtap="showModal" data-target="RadioModal">运动</button>
+  </view>
+</view>
+
+
+<view class="cu-modal {{modalName=='RadioModal'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <radio-group class="block">
+    <view class="cu-list menu text-left">
+      <view class="cu-item" wx:for="{{sports}}" wx:key="*this">
+        <label class="flex justify-between align-center flex-sub">
+          <view class="flex-sub">{{item}}</view>
+          <radio class="round" id="{{index}}"></radio>
+        </label>
+      </view>
+    </view>
+    </radio-group>
+  </view>
+</view>
+
+<view class="padding bg-white ">
+  <view class="cu-progress round striped  active">
+    <view class="bg-green" style="width:84%;">营养评分：84分</view>
+  </view>
+</view>
+
+<view class="flex p-xs  mb-sm">
+  <view class="flex-sub bg-white padding-sm margin-xs radius">
+    <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+  </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom ">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text>食用列表
+  </view>
+</view>
+
+<view class="flex p-xs mb-sm">
+  <view class="flex-sub bg-white padding-sm radius">
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+      </view>
+
+      <view class="weui-tab__panel weui-panel_access">
+        <view class="weui-panel__bd" hidden="{{activeIndex != 0}}">
+
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">梅菜肉包 (金汇)</view>
+            <view class="weui-media-box__desc">热量:30  |  脂肪:30  |  碳水化合物:30  |  蛋白质:30</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">单位: 100克</view>
+              <view class="weui-media-box__info__meta">数量: 2 </view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">2019-05-25 07:56</view>
+            </view>
+          </view>
+
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">豆浆</view>
+            <view class="weui-media-box__desc">热量:20  |  脂肪:40  |  碳水化合物:30  |  蛋白质:30</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">单位: 1瓶</view>
+              <view class="weui-media-box__info__meta">数量: 1</view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">2019-05-25 07:56</view>
+            </view>
+          </view>
+
+          <view class="weui-panel__ft">
+            <view class="weui-cell weui-cell_access weui-cell_link">
+              <view class="weui-cell__bd text-green">添加早餐</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+          </view>
+
+        </view>
+        <view class="weui-panel__bd" hidden="{{activeIndex != 1}}">
+
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">青椒土豆丝</view>
+            <view class="weui-media-box__desc">热量:60  |  脂肪:30  |  碳水化合物:30  |  蛋白质:30</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">单位: 500克</view>
+              <view class="weui-media-box__info__meta">数量: 1 </view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">2019-05-25 12:06</view>
+            </view>
+          </view>
+
+          <view class="weui-panel__ft">
+            <view class="weui-cell weui-cell_access weui-cell_link">
+              <view class="weui-cell__bd text-green">添加午餐</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+          </view>
+
+        </view>
+        <view class="weui-panel__bd" hidden="{{activeIndex != 2}}">
+
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">青椒土豆丝</view>
+            <view class="weui-media-box__desc">热量:60  |  脂肪:30  |  碳水化合物:30  |  蛋白质:30</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">单位: 500克</view>
+              <view class="weui-media-box__info__meta">数量: 1 </view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">2019-05-25 12:06</view>
+            </view>
+          </view>
+
+          <view class="weui-panel__ft">
+            <view class="weui-cell weui-cell_access weui-cell_link">
+              <view class="weui-cell__bd text-green">添加晚餐</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+          </view>
+
+        </view>
+        <view class="weui-panel__bd" hidden="{{activeIndex != 3}}">
+
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">青椒土豆丝</view>
+            <view class="weui-media-box__desc">热量:60  |  脂肪:30  |  碳水化合物:30  |  蛋白质:30</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">单位: 500克</view>
+              <view class="weui-media-box__info__meta">数量: 1 </view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">2019-05-25 12:06</view>
+            </view>
+          </view>
+
+          <view class="weui-panel__ft">
+            <view class="weui-cell weui-cell_access weui-cell_link">
+              <view class="weui-cell__bd text-green">添加零食</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+</view>
+
+
