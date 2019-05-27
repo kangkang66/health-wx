@@ -1,0 +1,77 @@
+<!--logs.wxml-->
+<cu-custom bgImage="https://image.weilanwl.com/color2.0/plugin/sylb2244.jpg" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">索引</view>
+</cu-custom>
+
+
+<view class="cu-bar bg-white solid-bottom ">
+    <view class="action">
+        <text class="cuIcon-title text-green"></text>鲫鱼豆腐汤
+    </view>
+</view>
+
+
+<view class="padding flex text-center text-grey bg-white shadow-warp">
+    <view class="flex flex-sub flex-direction solid-right">
+        <view class="text-xxl text-orange">203千卡</view>
+        <view class="margin-top-sm">
+            <text class="cuIcon-attentionfill"></text>热量</view>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+        <view class="text-xxl text-blue">11.23克</view>
+        <view class="margin-top-sm">
+            <text class="cuIcon-favorfill"></text> 脂肪</view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+        <view class="text-xxl text-green">25.31克</view>
+        <view class="margin-top-sm">
+            <text class="cuIcon-fork"></text> 碳水物</view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+        <view class="text-xxl text-yellow">3.01克</view>
+        <view class="margin-top-sm">
+            <text class="cuIcon-newshot"></text>蛋白质</view>
+    </view>
+</view>
+
+<form>
+    <view class="cu-form-group margin-top">
+        <view class="title">餐类</view>
+        <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+            <view class="picker">
+            {{index?picker[index]:picker[0]}}
+            </view>
+        </picker>
+    </view>
+
+    <view class="cu-form-group">
+        <view class="title">食用时间</view>
+        <picker mode="time" value="{{time}}" start="06:00" end="23:00" bindchange="TimeChange">
+            <view class="picker">
+                {{time}}
+            </view>
+        </picker>
+    </view>
+
+    <view class="cu-form-group">
+        <view class="title">食用数量</view>
+        <input placeholder="食用的数量"></input>
+    </view>
+
+    <view class="cu-form-group">
+        <view class="title">食用单位</view>
+        <picker bindchange="PickerChange" value="{{index}}" range="{{units}}">
+            <view class="picker">
+                {{index?units[index]:units[0]}}
+            </view>
+        </picker>
+    </view>
+
+</form>
+
+<view class="cu-bar bg-white tabbar border shop">
+    <view class="btn-group">
+        <button class="cu-btn bg-green round shadow-blur">记录食用</button>
+    </view>
+</view>

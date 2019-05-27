@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -52,6 +52,13 @@
 					"id": -1,
 					"name": "input-number",
 					"pathName": "pages/input-number/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "food",
+					"pathName": "pages/food/food",
 					"scene": null
 				}
 			]

@@ -72,21 +72,29 @@
 
           <view class="weui-media-box weui-media-box_text">
             <view class="weui-media-box__title weui-media-box__title_in-text">梅菜肉包 (金汇)</view>
-            <view class="weui-media-box__desc">热量:30  |  脂肪:30  |  碳水化合物:30  |  蛋白质:30</view>
+            <view class="weui-media-box__desc">
+              <view class="cu-tag radius sm">热量:30</view>
+              <view class="cu-tag radius sm">脂肪:30</view>
+              <view class="cu-tag radius sm">碳水:30</view>
+              <view class="cu-tag radius sm">蛋白质:30</view>
+            </view>
             <view class="weui-media-box__info">
-              <view class="weui-media-box__info__meta">单位: 100克</view>
-              <view class="weui-media-box__info__meta">数量: 2 </view>
-              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">2019-05-25 07:56</view>
+              <view class="weui-media-box__info__meta">2019-05-25 07:56</view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">食用量: 100克 * 2</view>
             </view>
           </view>
 
           <view class="weui-media-box weui-media-box_text">
             <view class="weui-media-box__title weui-media-box__title_in-text">豆浆</view>
-            <view class="weui-media-box__desc">热量:20  |  脂肪:40  |  碳水化合物:30  |  蛋白质:30</view>
+            <view class="weui-media-box__desc">
+              <view class="cu-tag radius sm">热量:30</view>
+              <view class="cu-tag radius sm">脂肪:30</view>
+              <view class="cu-tag radius sm">碳水:30</view>
+              <view class="cu-tag radius sm">蛋白质:30</view>
+            </view>
             <view class="weui-media-box__info">
-              <view class="weui-media-box__info__meta">单位: 1瓶</view>
-              <view class="weui-media-box__info__meta">数量: 1</view>
-              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">2019-05-25 07:56</view>
+              <view class="weui-media-box__info__meta">2019-05-25 07:56</view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">食用量: 100克 * 2</view>
             </view>
           </view>
 
@@ -102,7 +110,12 @@
 
           <view class="weui-media-box weui-media-box_text">
             <view class="weui-media-box__title weui-media-box__title_in-text">青椒土豆丝</view>
-            <view class="weui-media-box__desc">热量:60  |  脂肪:30  |  碳水化合物:30  |  蛋白质:30</view>
+            <view class="weui-media-box__desc">
+              <view class="cu-tag radius sm">热量:30</view>
+              <view class="cu-tag radius sm">脂肪:30</view>
+              <view class="cu-tag radius sm">碳水:30</view>
+              <view class="cu-tag radius sm">蛋白质:30</view>
+            </view>
             <view class="weui-media-box__info">
               <view class="weui-media-box__info__meta">单位: 500克</view>
               <view class="weui-media-box__info__meta">数量: 1 </view>
@@ -122,7 +135,12 @@
 
           <view class="weui-media-box weui-media-box_text">
             <view class="weui-media-box__title weui-media-box__title_in-text">青椒土豆丝</view>
-            <view class="weui-media-box__desc">热量:60  |  脂肪:30  |  碳水化合物:30  |  蛋白质:30</view>
+            <view class="weui-media-box__desc">
+              <view class="cu-tag radius sm">热量:30</view>
+              <view class="cu-tag radius sm">脂肪:30</view>
+              <view class="cu-tag radius sm">碳水:30</view>
+              <view class="cu-tag radius sm">蛋白质:30</view>
+            </view>
             <view class="weui-media-box__info">
               <view class="weui-media-box__info__meta">单位: 500克</view>
               <view class="weui-media-box__info__meta">数量: 1 </view>
@@ -142,7 +160,12 @@
 
           <view class="weui-media-box weui-media-box_text">
             <view class="weui-media-box__title weui-media-box__title_in-text">青椒土豆丝</view>
-            <view class="weui-media-box__desc">热量:60  |  脂肪:30  |  碳水化合物:30  |  蛋白质:30</view>
+            <view class="weui-media-box__desc">
+              <view class="cu-tag radius sm">热量:30</view>
+              <view class="cu-tag radius sm">脂肪:30</view>
+              <view class="cu-tag radius sm">碳水:30</view>
+              <view class="cu-tag radius sm">蛋白质:30</view>
+            </view>
             <view class="weui-media-box__info">
               <view class="weui-media-box__info__meta">单位: 500克</view>
               <view class="weui-media-box__info__meta">数量: 1 </view>
