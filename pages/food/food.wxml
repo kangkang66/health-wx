@@ -14,24 +14,38 @@
 
 <view class="padding flex text-center text-grey bg-white shadow-warp">
     <view class="flex flex-sub flex-direction solid-right">
-        <view class="text-xxl text-orange">203千卡</view>
+        <view class="text-xxl text-orange">203</view>
         <view class="margin-top-sm">
-            <text class="cuIcon-attentionfill"></text>热量</view>
+            <text class="cuIcon-attentionfill"></text>热量(千卡)</view>
     </view>
     <view class="flex flex-sub flex-direction solid-right">
-        <view class="text-xxl text-blue">11.23克</view>
+        <view class="text-xxl text-blue">11.23</view>
         <view class="margin-top-sm">
-            <text class="cuIcon-favorfill"></text> 脂肪</view>
+            <text class="cuIcon-favorfill"></text>脂肪(克)</view>
     </view>
     <view class="flex flex-sub flex-direction">
-        <view class="text-xxl text-green">25.31克</view>
+        <view class="text-xxl text-green">25.31</view>
         <view class="margin-top-sm">
-            <text class="cuIcon-fork"></text> 碳水物</view>
+            <text class="cuIcon-fork"></text> 碳水物(克)</view>
     </view>
     <view class="flex flex-sub flex-direction">
-        <view class="text-xxl text-yellow">3.01克</view>
+        <view class="text-xxl text-yellow">3.01</view>
         <view class="margin-top-sm">
-            <text class="cuIcon-newshot"></text>蛋白质</view>
+            <text class="cuIcon-newshot"></text>蛋白质(克)</view>
+    </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+        <text class="cuIcon-title text-green"></text>热量比例
+    </view>
+</view>
+
+<view class="padding bg-white shadow-warp">
+    <view class="cu-progress radius striped active">
+        <view class="bg-red" style="width:30%;">脂肪 30%</view>
+        <view class="bg-olive" style="width:45%;">碳水物 45%</view>
+        <view class="bg-cyan" style="width:25%;">蛋白质 25%</view>
     </view>
 </view>
 

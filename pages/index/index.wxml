@@ -23,7 +23,7 @@
 </view>
 
 
-<view class="cu-modal {{modalName=='RadioModal'?'show':''}}" bindtap="hideModal">
+<view class="cu-modal  {{modalName=='RadioModal'?'show':''}} bg-white" bindtap="hideModal">
   <view class="cu-dialog" catchtap>
     <radio-group class="block">
     <view class="cu-list menu text-left">
@@ -44,13 +44,13 @@
   </view>
 </view>
 
-<view class="flex p-xs  mb-sm">
+<view class="flex p-xs  mb-sm shadow-warp">
   <view class="flex-sub bg-white padding-sm margin-xs radius">
     <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
   </view>
 </view>
 
-<view class="cu-bar bg-white solid-bottom ">
+<view class="cu-bar bg-white solid-bottom margin-top">
   <view class="action">
     <text class="cuIcon-title text-green"></text>食用列表
   </view>
