@@ -5,7 +5,7 @@ Page({
         CustomBar: app.globalData.CustomBar,
         hidden: true
     },
-    onLoad() {
+    onLoad(option) {
         let list = [];
         for (let i = 0; i < 26; i++) {
             list[i] = String.fromCharCode(65 + i)
@@ -14,6 +14,8 @@ Page({
             list: list,
             listCur: list[0]
         })
+
+        console.log(option.search)
     },
     onReady() {
         let that = this;

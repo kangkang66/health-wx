@@ -3,14 +3,14 @@
   <view slot="content">今日营养</view>
 </cu-custom>
 
-
 <view class="cu-bar search bg-white">
   <view class="cu-avatar round" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);"></view>
-  <view class="search-form round">
-    <text class="cuIcon-search"></text>
-    <input type="text" placeholder="肉包子" confirm-type="search"></input>
-  </view>
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" value="肉包子" confirm-type="search"  bindfocus="formSubmit"></input>
+    </view>
 </view>
+
 
 <view class="cu-bar bg-white solid-bottom ">
   <view class="action">
@@ -70,19 +70,21 @@
       <view class="weui-tab__panel weui-panel_access">
         <view class="weui-panel__bd" hidden="{{activeIndex != 0}}">
 
-          <view class="weui-media-box weui-media-box_text">
-            <view class="weui-media-box__title weui-media-box__title_in-text">梅菜肉包 (金汇)</view>
-            <view class="weui-media-box__desc">
-              <view class="cu-tag radius sm">热量:30</view>
-              <view class="cu-tag radius sm">脂肪:30</view>
-              <view class="cu-tag radius sm">碳水:30</view>
-              <view class="cu-tag radius sm">蛋白质:30</view>
+          <navigator url="/pages/food/food">
+            <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__title weui-media-box__title_in-text">梅菜肉包 (金汇)</view>
+              <view class="weui-media-box__desc">
+                <view class="cu-tag radius sm">热量:30</view>
+                <view class="cu-tag radius sm">脂肪:30</view>
+                <view class="cu-tag radius sm">碳水:30</view>
+                <view class="cu-tag radius sm">蛋白质:30</view>
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta">2019-05-25 07:56</view>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">食用量: 100克 * 2</view>
+              </view>
             </view>
-            <view class="weui-media-box__info">
-              <view class="weui-media-box__info__meta">2019-05-25 07:56</view>
-              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">食用量: 100克 * 2</view>
-            </view>
-          </view>
+          </navigator>
 
           <view class="weui-media-box weui-media-box_text">
             <view class="weui-media-box__title weui-media-box__title_in-text">豆浆</view>

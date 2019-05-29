@@ -1,42 +1,36 @@
 var wxCharts = require('../../utils/wxcharts.js');
-var app = getApp();
 var columnChart = null;
 var chartData = {
   main: {
     title: '营养成分',
     data: [15, 20, 45, 37],
+    data2: [10, 24, 35, 40],
     categories: ['总热量', '碳水', '蛋白质', '脂肪']
-  },
-  sub: [{
-    title: '2012年度成交量',
-    data: [70, 40, 65, 100, 34, 18],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }, {
-    title: '2013年度成交量',
-    data: [55, 30, 45, 36, 56, 13],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }, {
-    title: '2014年度成交量',
-    data: [76, 45, 32, 74, 54, 35],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }, {
-    title: '2015年度成交量',
-    data: [76, 54, 23, 12, 45, 65],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }]
+  }
 };
 Page({
   data: {
-    chartTitle: '总成交量',
-    isMainChartDisplay: true,
-
+    //运动列表
     sports: ["静坐", "轻度运动", "中度运动", "重度运动","高强度运动"],
-
+    //饮食类型
     tabs: ["早餐", "午餐", "晚餐", "零食"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
 
+  },
+  onReady: function (e) {
+    this.canvas(e)
+  },
+  formSubmit: function(e) {
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    wx.navigateTo({url:"/pages/search/search?search=123456"})
+  },
+  tabClick: function (e) {
+    this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
+    });
   },
   showModal(e) {
     this.setData({
@@ -48,52 +42,7 @@ Page({
       modalName: null
     })
   },
-
-  backToMainChart: function () {
-    this.setData({
-      chartTitle: chartData.main.title,
-      isMainChartDisplay: true
-    });
-    columnChart.updateData({
-      categories: chartData.main.categories,
-      series: [{
-        name: '成交量',
-        data: chartData.main.data,
-        format: function (val, name) {
-          return val.toFixed(2) + '万';
-        }
-      }]
-    });
-  },
-
-  touchHandler: function (e) {
-    var index = columnChart.getCurrentDataIndex(e);
-    if (index > -1 && index < chartData.sub.length && this.data.isMainChartDisplay) {
-      this.setData({
-        chartTitle: chartData.sub[index].title,
-        isMainChartDisplay: false
-      });
-      columnChart.updateData({
-        categories: chartData.sub[index].categories,
-        series: [{
-          name: '成交量',
-          data: chartData.sub[index].data,
-          format: function (val, name) {
-            return val.toFixed(2) + '万';
-          }
-        }]
-      });
-
-    }
-  },
-
-  tabClick: function (e) {
-    this.setData({
-      sliderOffset: e.currentTarget.offsetLeft,
-      activeIndex: e.currentTarget.id
-    });
-  },
-  onReady: function (e) {
+  canvas: function (e) {
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
@@ -101,7 +50,6 @@ Page({
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
-
     columnChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'column',
@@ -111,24 +59,25 @@ Page({
         name: '目标营养',
         data: chartData.main.data,
         format: function (val, name) {
-          return val.toFixed(2) + '万';
+          //return val.toFixed(2);
+          return val;
         }
       }, {
         name: '今日营养',
-        data: chartData.main.data,
+        data: chartData.main.data2,
         format: function (val, name) {
-          return val.toFixed(2) + '万';
-      }
-    }],
+          return val;
+        }
+      }],
       yAxis: {
         format: function (val) {
-          return val + '万';
+          return val;
         },
-        title: 'hello',
+        title: '今日饮食数据',
         min: 0
       },
       xAxis: {
-        disableGrid: false,
+        disableGrid: true,
         type: 'calibration'
       },
       extra: {
