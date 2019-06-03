@@ -3,15 +3,6 @@
   <view slot="content">今日营养</view>
 </cu-custom>
 
-<view class="cu-bar search bg-white">
-  <view class="cu-avatar round" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);"></view>
-    <view class="search-form round">
-      <text class="cuIcon-search"></text>
-      <input type="text" value="肉包子" confirm-type="search"  bindfocus="formSubmit"></input>
-    </view>
-</view>
-
-
 <view class="cu-bar bg-white solid-bottom ">
   <view class="action">
     <text class="cuIcon-title text-green"></text>营养数据
@@ -101,10 +92,12 @@
           </view>
 
           <view class="weui-panel__ft">
-            <view class="weui-cell weui-cell_access weui-cell_link">
-              <view class="weui-cell__bd text-green">添加早餐</view>
-              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </view>
+            <navigator url="/pages/search/search" >
+              <view class="weui-cell weui-cell_access weui-cell_link">
+                <view class="weui-cell__bd text-green">添加早餐</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </view>
+            </navigator>
           </view>
 
         </view>

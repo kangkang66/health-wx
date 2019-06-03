@@ -5,33 +5,50 @@
 </cu-custom>
 
 
-<view class="cu-bar bg-white solid-bottom ">
+<view class="cu-bar bg-white solid-bottom margin-top">
     <view class="action">
-        <text class="cuIcon-title text-green"></text>鲫鱼豆腐汤
+        <text class="cuIcon-title text-green "></text> {{result.name}}
+    </view>
+    <view class="action">
+        <button class="cu-btn bg-white shadow" bindtap="showModal" data-target="RadioModal">{{result.components[unitsCheckedIndex].unit_name}}</button>
+    </view>
+</view>
+
+<view class="cu-modal  {{modalName=='RadioModal'?'show':''}} bg-white" bindtap="hideModal">
+    <view class="cu-dialog">
+        <radio-group class="block" bindchange="radioChange">
+            <view class="cu-list menu text-left">
+                <view class="cu-item" wx:for="{{result.components}}" wx:key>
+                    <label class="flex justify-between align-center flex-sub">
+                        <view class="flex-sub">{{item.unit_name}}</view>
+                        <radio class="round" value="{{index}}" checked="{{index==0 ? true:false}}"></radio>
+                    </label>
+                </view>
+            </view>
+        </radio-group>
     </view>
 </view>
 
 
 <view class="padding flex text-center text-grey bg-white shadow-warp">
     <view class="flex flex-sub flex-direction solid-right">
-        <view class="text-xxl text-orange">203</view>
+        <view class="text-xxl text-orange">{{result.components[unitsCheckedIndex].calorie}}</view>
         <view class="margin-top-sm">
-            <text class="cuIcon-attentionfill"></text>热量(千卡)</view>
+            热量(千卡)</view>
     </view>
     <view class="flex flex-sub flex-direction solid-right">
-        <view class="text-xxl text-blue">11.23</view>
+        <view class="text-xxl text-blue">{{result.components[unitsCheckedIndex].fat}}</view>
         <view class="margin-top-sm">
-            <text class="cuIcon-favorfill"></text>脂肪(克)</view>
+            脂肪(克)</view>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+        <view class="text-xxl text-green">{{result.components[unitsCheckedIndex].carbohydrate}}</view>
+        <view class="margin-top-sm">
+            碳水物(克)</view>
     </view>
     <view class="flex flex-sub flex-direction">
-        <view class="text-xxl text-green">25.31</view>
-        <view class="margin-top-sm">
-            <text class="cuIcon-fork"></text> 碳水物(克)</view>
-    </view>
-    <view class="flex flex-sub flex-direction">
-        <view class="text-xxl text-yellow">3.01</view>
-        <view class="margin-top-sm">
-            <text class="cuIcon-newshot"></text>蛋白质(克)</view>
+        <view class="text-xxl text-yellow">{{result.components[unitsCheckedIndex].protein}}</view>
+        <view class="margin-top-sm">蛋白质(克)</view>
     </view>
 </view>
 
@@ -43,16 +60,16 @@
 
 <view class="padding bg-white shadow-warp">
     <view class="cu-progress radius striped active">
-        <view class="bg-red" style="width:30%;">脂肪 30%</view>
-        <view class="bg-olive" style="width:45%;">碳水物 45%</view>
-        <view class="bg-cyan" style="width:25%;">蛋白质 25%</view>
+        <view class="bg-blue" style="width:{{result.components[unitsCheckedIndex].fat_calorie_rate}}%;">{{result.components[unitsCheckedIndex].fat_calorie_rate}}%</view>
+        <view class="bg-green" style="width:{{result.components[unitsCheckedIndex].carbohydrate_calorie_rate}}%;">{{result.components[unitsCheckedIndex].carbohydrate_calorie_rate}}%</view>
+        <view class="bg-yellow" style="width:{{result.components[unitsCheckedIndex].protein_calorie_rate}}%;">{{result.components[unitsCheckedIndex].protein_calorie_rate}}%</view>
     </view>
 </view>
 
-<form>
+<form   bindsubmit="formSubmit">
     <view class="cu-form-group margin-top">
         <view class="title">餐类</view>
-        <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+        <picker name="eat_type" value="0" range="{{picker}}">
             <view class="picker">
             {{index?picker[index]:picker[0]}}
             </view>
@@ -61,7 +78,7 @@
 
     <view class="cu-form-group">
         <view class="title">食用时间</view>
-        <picker mode="time" value="{{time}}" start="06:00" end="23:00" bindchange="TimeChange">
+        <picker mode="time" name="eat_time" value="{{time}}" start="06:00" end="23:00" bindchange="TimeChange">
             <view class="picker">
                 {{time}}
             </view>
@@ -70,22 +87,13 @@
 
     <view class="cu-form-group">
         <view class="title">食用数量</view>
-        <input placeholder="食用的数量"></input>
+        <input name="eat_num" value="1" placeholder="食用的数量"></input>
     </view>
 
-    <view class="cu-form-group">
-        <view class="title">食用单位</view>
-        <picker bindchange="PickerChange" value="{{index}}" range="{{units}}">
-            <view class="picker">
-                {{index?units[index]:units[0]}}
-            </view>
-        </picker>
-    </view>
-
-</form>
 
 <view class="cu-bar bg-white tabbar border shop">
     <view class="btn-group">
-        <button class="cu-btn bg-green round shadow-blur">记录食用</button>
+        <button class="cu-btn bg-green round shadow-blur" form-type="submit">记录食用</button>
     </view>
 </view>
+</form>

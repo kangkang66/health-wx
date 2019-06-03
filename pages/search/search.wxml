@@ -1,43 +1,34 @@
 <cu-custom bgImage="https://image.weilanwl.com/color2.0/plugin/sylb2244.jpg" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">索引</view>
+    <view slot="backText">返回</view>
+    <view slot="content">食物搜索</view>
 </cu-custom>
 
-<view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
-  <view class="search-form round">
-    <text class="cuIcon-search"></text>
-    <input focus="true" type="text" placeholder="输入搜索的关键词" confirm-type="search"></input>
-  </view>
-  <view class="action">
-    <button class="cu-btn bg-gradual-green shadow-blur round">搜索</button>
-  </view>
-</view>
 
-<scroll-view scroll-y class="indexes" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - {{CustomBar}}px - 50px)" scroll-with-animation="true" enable-back-to-top="true">
-  <block wx:for="{{list}}" wx:key>
-    <view class="padding indexItem-{{list[index]}}" id="indexes-{{list[index]}}" data-index="{{list[index]}}">{{list[index]}}</view>
-    <view class="cu-list menu-avatar no-padding">
-      <view class="cu-item" wx:for="{{2}}" wx:key wx:for-index="sub">
-        <view class="cu-avatar round lg">{{list[index]}}</view>
-        <view class="content">
-          <view class="text-grey">{{list[index]}}
-            <text class="text-abc">{{list[sub]}}</text>君</view>
-          <view class="text-gray text-sm">
-            有{{sub+2}}个主子需要伺候
-          </view>
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindconfirm="inputTyping" />
+                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                    <icon class="weui-icon-search" type="search" size="14"></icon>
+                    <view class="weui-search-bar__text">搜索</view>
+                </label>
+            </view>
+            <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
-      </view>
+
+        <view class="weui-cells searchbar-result" wx:for="{{result.list}}" wx:key="unique">
+            <navigator url="/pages/food/food?id={{item.id}}" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>{{item.name}}</view>
+                </view>
+            </navigator>
+        </view>
     </view>
-  </block>
-</scroll-view>
-
-<view class="indexBar" style="height:calc(100vh - {{CustomBar}}px - 50px)">
-  <view class="indexBar-box" bindtouchstart="tStart" bindtouchend="tEnd" catchtouchmove="tMove">
-    <view class="indexBar-item" wx:for="{{list}}" wx:key id="{{index}}" bindtouchstart="getCur" bindtouchend="setCur">{{list[index]}}</view>
-  </view>
-</view>
-
-<!--选择显示-->
-<view hidden="{{hidden}}" class="indexToast">
-  {{listCur}}
 </view>

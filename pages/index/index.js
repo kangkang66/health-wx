@@ -16,8 +16,7 @@ Page({
     tabs: ["早餐", "午餐", "晚餐", "零食"],
     activeIndex: 0,
     sliderOffset: 0,
-    sliderLeft: 0,
-
+    sliderLeft: 0
   },
   onReady: function (e) {
     this.canvas(e)
