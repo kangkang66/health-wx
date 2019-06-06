@@ -16,7 +16,7 @@
 
 <view class="cu-modal  {{modalName=='RadioModal'?'show':''}} bg-white" bindtap="hideModal">
     <view class="cu-dialog">
-        <radio-group class="block" bindchange="radioChange">
+        <radio-group class="block" bindchange="unitsChange">
             <view class="cu-list menu text-left">
                 <view class="cu-item" wx:for="{{result.components}}" wx:key>
                     <label class="flex justify-between align-center flex-sub">
@@ -69,9 +69,9 @@
 <form   bindsubmit="formSubmit">
     <view class="cu-form-group margin-top">
         <view class="title">餐类</view>
-        <picker name="eat_type" value="0" range="{{picker}}">
+        <picker name="eat_type" value="{{eatTypeIndex}}" bindchange="eatTypeChange" range="{{eatTypes}}">
             <view class="picker">
-            {{index?picker[index]:picker[0]}}
+            {{eatTypes[eatTypeIndex]}}
             </view>
         </picker>
     </view>

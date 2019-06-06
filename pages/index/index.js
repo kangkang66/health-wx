@@ -1,4 +1,5 @@
 var wxCharts = require('../../utils/wxcharts.js');
+var Api = require('../../utils/api.js');
 var columnChart = null;
 var chartData = {
   main: {
@@ -17,6 +18,24 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0
+  },
+  onLoad:function (e) {
+    //登录
+    wx.login({
+      success (res) {
+        console.log(res)
+        wx.request({
+          url: Api.wxLogin({code: res.code}),
+          success: function(res) {
+            console.log(res.data)
+            wx.setStorageSync("openid", res.data.openid)
+          }
+        })
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
   },
   onReady: function (e) {
     this.canvas(e)
