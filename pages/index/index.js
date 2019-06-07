@@ -5,6 +5,8 @@ Page({
   data: {
     //运动列表
     sports: ["静坐", "轻度运动", "中度运动", "重度运动","高强度运动"],
+    sportsVal: [1.2, 1.37, 1.55, 1.73, 1.9],
+    sportIndex:0,
     //饮食类型
     tabs: ["早餐", "午餐", "晚餐", "零食"],
     //列表切换
@@ -19,6 +21,25 @@ Page({
     eat:{date:"",uid:"",eat_score:0,breakfast:[],lunch:[],dinner:[],snacks:[],score:{},exercise:1.37},
   },
   onLoad:function (e) {
+    //获取数据
+    var that = this
+    wx.request({
+      url:Api.Eat(),
+      success(res) {
+        console.log(res.data)
+        var idx = that.data.sportsVal.indexOf(res.data.exercise)
+        idx == -1 ? 0:idx
+        that.setData({
+          sportIndex:idx,
+          targetData:[res.data.score.calorie_target, res.data.score.fat_target, res.data.score.carbohydrate_target, res.data.score.protein_target],
+          currentData:[res.data.score.calorie_today, res.data.score.fat_today, res.data.score.carbohydrate_today, res.data.score.protein_today],
+          eat:res.data
+        })
+
+      }
+    })
+  },
+  onReady: function (e) {
     //登录
     wx.login({
       success (res) {
@@ -36,27 +57,7 @@ Page({
       }
     })
 
-    //获取数据
-    var that = this
-    wx.request({
-      url:Api.Eat(),
-      success(res) {
-        console.log(res.data)
-        that.setData({
-          targetData:[res.data.score.calorie_target, res.data.score.fat_target, res.data.score.carbohydrate_target, res.data.score.protein_target],
-          currentData:[res.data.score.calorie_today, res.data.score.fat_today, res.data.score.carbohydrate_today, res.data.score.protein_today],
-          eat:res.data
-        })
-
-      }
-    })
-  },
-  onReady: function (e) {
     this.canvas(e)
-  },
-  formSubmit: function(e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    wx.navigateTo({url:"/pages/search/search?search=123456"})
   },
   tabClick: function (e) {
     this.setData({
@@ -64,15 +65,21 @@ Page({
       activeIndex: e.currentTarget.id
     });
   },
-  showModal(e) {
+  bindSportChange : function(e) {
     this.setData({
-      modalName: e.currentTarget.dataset.target
+      sportIndex:e.detail.value
     })
-  },
-  hideModal(e) {
-    this.setData({
-      modalName: null
+
+    var exerVal = this.data.sportsVal[e.detail.value]
+    wx.request({
+      url:Api.Exercise(),
+      method:"POST",
+      data:{"exercise":exerVal},
+      success(res) {
+        console.log(res)
+      }
     })
+
   },
   canvas: function (e) {
     var windowWidth = 320;

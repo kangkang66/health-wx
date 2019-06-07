@@ -28,9 +28,14 @@ function _wxLogin(o) {
     return HOST_URI + "/wx/login?" + _obj2uri(o);
 }
 
+function _exercise(o) {
+    return HOST_URI + "/exercise?" + _obj2uri(o);
+}
+
 module.exports = {
     search: _search,
     info : _info,
     Eat:_eat,
     wxLogin:_wxLogin,
+    Exercise:_exercise,
 };
