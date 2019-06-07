@@ -1,7 +1,5 @@
 <!--index.wxml-->
-<cu-custom bgImage="https://image.weilanwl.com/color2.0/plugin/sylb2244.jpg" >
-  <view slot="content">今日营养</view>
-</cu-custom>
+
 
 <view class="cu-bar bg-white solid-bottom ">
   <view class="action">
@@ -9,22 +7,22 @@
   </view>
 
   <view class="action">
-    <button class="cu-btn bg-white shadow" bindtap="showModal" data-target="RadioModal">运动</button>
+    <button class="cu-btn bg-white shadow" bindtap="showModal" data-target="RadioModal">今日运动</button>
   </view>
 </view>
 
 
-<view class="cu-modal  {{modalName=='RadioModal'?'show':''}} bg-white" bindtap="hideModal">
-  <view class="cu-dialog" catchtap>
+<view class="cu-modal  {{modalName=='RadioModal'?'show':''}} bg-gray" bindtap="hideModal">
+  <view class="cu-dialog">
     <radio-group class="block">
-    <view class="cu-list menu text-left">
-      <view class="cu-item" wx:for="{{sports}}" wx:key="*this">
-        <label class="flex justify-between align-center flex-sub">
-          <view class="flex-sub">{{item}}</view>
-          <radio class="round" id="{{index}}"></radio>
-        </label>
+      <view class="cu-list menu text-left">
+        <view class="cu-item" wx:for="{{sports}}" wx:key="*this">
+          <label class="flex justify-between align-center flex-sub">
+            <view class="flex-sub">{{item}}</view>
+            <radio class="round" id="{{index}}"></radio>
+          </label>
+        </view>
       </view>
-    </view>
     </radio-group>
   </view>
 </view>
