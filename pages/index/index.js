@@ -21,25 +21,6 @@ Page({
     eat:{date:"",uid:"",eat_score:0,breakfast:[],lunch:[],dinner:[],snacks:[],score:{},exercise:1.37},
   },
   onLoad:function (e) {
-    //获取数据
-    var that = this
-    wx.request({
-      url:Api.Eat(),
-      success(res) {
-        console.log(res.data)
-        var idx = that.data.sportsVal.indexOf(res.data.exercise)
-        idx == -1 ? 0:idx
-        that.setData({
-          sportIndex:idx,
-          targetData:[res.data.score.calorie_target, res.data.score.fat_target, res.data.score.carbohydrate_target, res.data.score.protein_target],
-          currentData:[res.data.score.calorie_today, res.data.score.fat_today, res.data.score.carbohydrate_today, res.data.score.protein_today],
-          eat:res.data
-        })
-
-      }
-    })
-  },
-  onReady: function (e) {
     //登录
     wx.login({
       success (res) {
@@ -56,8 +37,27 @@ Page({
         console.log(res)
       }
     })
-
-    this.canvas(e)
+    console.log(1111, this.data.targetData)
+  },
+  onReady: function (e) {
+    //获取数据
+    var that = this
+    wx.request({
+      url:Api.Eat(),
+      success(res) {
+        console.log(res.data)
+        var idx = that.data.sportsVal.indexOf(res.data.exercise)
+        idx == -1 ? 0:idx
+        that.setData({
+          sportIndex:idx,
+          targetData:[res.data.score.calorie_target, res.data.score.fat_target, res.data.score.carbohydrate_target, res.data.score.protein_target],
+          currentData:[res.data.score.calorie_today, res.data.score.fat_today, res.data.score.carbohydrate_today, res.data.score.protein_today],
+          eat:res.data
+        })
+        //绘图
+        that.canvas(e)
+      }
+    })
   },
   tabClick: function (e) {
     this.setData({
