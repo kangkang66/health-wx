@@ -31,7 +31,7 @@
 
 <view class="padding bg-white ">
   <view class="cu-progress round striped  active">
-    <view class="bg-green" style="width:84%;">营养评分：84分</view>
+    <view class="bg-green" style="width:{{eat.eat_score}}%;">{{eat.eat_score}}分</view>
   </view>
 </view>
 
@@ -61,34 +61,23 @@
       <view class="weui-tab__panel weui-panel_access">
         <view class="weui-panel__bd" hidden="{{activeIndex != 0}}">
 
-          <navigator url="/pages/food/food">
-            <view class="weui-media-box weui-media-box_text">
-              <view class="weui-media-box__title weui-media-box__title_in-text">梅菜肉包 (金汇)</view>
-              <view class="weui-media-box__desc">
-                <view class="cu-tag radius sm">热量:30</view>
-                <view class="cu-tag radius sm">脂肪:30</view>
-                <view class="cu-tag radius sm">碳水:30</view>
-                <view class="cu-tag radius sm">蛋白质:30</view>
+          <view wx:for="{{eat.breakfast}}" wx:key="unique">
+            <navigator url="/pages/food/food?id={{item.fid}}&cid={{item.id}}">
+              <view class="weui-media-box weui-media-box_text">
+                <view class="weui-media-box__title weui-media-box__title_in-text">{{item.food_name}}</view>
+                <view class="weui-media-box__desc">
+                  <view class="cu-tag radius sm">热量:{{item.calorie}}</view>
+                  <view class="cu-tag radius sm">脂肪:{{item.fat}}</view>
+                  <view class="cu-tag radius sm">碳水:{{item.carbohydrate}}</view>
+                  <view class="cu-tag radius sm">蛋白质:{{item.protein}}</view>
+                </view>
+                <view class="weui-media-box__info">
+                  <view class="weui-media-box__info__meta">{{item.eat_time}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">品牌:{{item.brand}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">食用量: {{item.unit_name}} * {{item.eat_num}}</view>
+                </view>
               </view>
-              <view class="weui-media-box__info">
-                <view class="weui-media-box__info__meta">2019-05-25 07:56</view>
-                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">食用量: 100克 * 2</view>
-              </view>
-            </view>
-          </navigator>
-
-          <view class="weui-media-box weui-media-box_text">
-            <view class="weui-media-box__title weui-media-box__title_in-text">豆浆</view>
-            <view class="weui-media-box__desc">
-              <view class="cu-tag radius sm">热量:30</view>
-              <view class="cu-tag radius sm">脂肪:30</view>
-              <view class="cu-tag radius sm">碳水:30</view>
-              <view class="cu-tag radius sm">蛋白质:30</view>
-            </view>
-            <view class="weui-media-box__info">
-              <view class="weui-media-box__info__meta">2019-05-25 07:56</view>
-              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">食用量: 100克 * 2</view>
-            </view>
+            </navigator>
           </view>
 
           <view class="weui-panel__ft">
@@ -103,76 +92,95 @@
         </view>
         <view class="weui-panel__bd" hidden="{{activeIndex != 1}}">
 
-          <view class="weui-media-box weui-media-box_text">
-            <view class="weui-media-box__title weui-media-box__title_in-text">青椒土豆丝</view>
-            <view class="weui-media-box__desc">
-              <view class="cu-tag radius sm">热量:30</view>
-              <view class="cu-tag radius sm">脂肪:30</view>
-              <view class="cu-tag radius sm">碳水:30</view>
-              <view class="cu-tag radius sm">蛋白质:30</view>
-            </view>
-            <view class="weui-media-box__info">
-              <view class="weui-media-box__info__meta">单位: 500克</view>
-              <view class="weui-media-box__info__meta">数量: 1 </view>
-              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">2019-05-25 12:06</view>
-            </view>
+          <view wx:for="{{eat.lunch}}" wx:key="unique">
+            <navigator url="/pages/food/food?id={{item.fid}}&cid={{item.id}}">
+              <view class="weui-media-box weui-media-box_text">
+                <view class="weui-media-box__title weui-media-box__title_in-text">{{item.food_name}}</view>
+                <view class="weui-media-box__desc">
+                  <view class="cu-tag radius sm">热量:{{item.calorie}}</view>
+                  <view class="cu-tag radius sm">脂肪:{{item.fat}}</view>
+                  <view class="cu-tag radius sm">碳水:{{item.carbohydrate}}</view>
+                  <view class="cu-tag radius sm">蛋白质:{{item.protein}}</view>
+                </view>
+                <view class="weui-media-box__info">
+                  <view class="weui-media-box__info__meta">{{item.eat_time}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">品牌:{{item.brand}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">食用量: {{item.unit_name}} * {{item.eat_num}}</view>
+                </view>
+              </view>
+            </navigator>
           </view>
 
           <view class="weui-panel__ft">
-            <view class="weui-cell weui-cell_access weui-cell_link">
-              <view class="weui-cell__bd text-green">添加午餐</view>
-              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </view>
+            <navigator url="/pages/search/search" >
+              <view class="weui-cell weui-cell_access weui-cell_link">
+                <view class="weui-cell__bd text-green">添加午餐</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </view>
+            </navigator>
           </view>
 
         </view>
         <view class="weui-panel__bd" hidden="{{activeIndex != 2}}">
 
-          <view class="weui-media-box weui-media-box_text">
-            <view class="weui-media-box__title weui-media-box__title_in-text">青椒土豆丝</view>
-            <view class="weui-media-box__desc">
-              <view class="cu-tag radius sm">热量:30</view>
-              <view class="cu-tag radius sm">脂肪:30</view>
-              <view class="cu-tag radius sm">碳水:30</view>
-              <view class="cu-tag radius sm">蛋白质:30</view>
-            </view>
-            <view class="weui-media-box__info">
-              <view class="weui-media-box__info__meta">单位: 500克</view>
-              <view class="weui-media-box__info__meta">数量: 1 </view>
-              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">2019-05-25 12:06</view>
-            </view>
+          <view wx:for="{{eat.dinner}}" wx:key="unique">
+            <navigator url="/pages/food/food?id={{item.fid}}&cid={{item.id}}">
+              <view class="weui-media-box weui-media-box_text">
+                <view class="weui-media-box__title weui-media-box__title_in-text">{{item.food_name}}</view>
+                <view class="weui-media-box__desc">
+                  <view class="cu-tag radius sm">热量:{{item.calorie}}</view>
+                  <view class="cu-tag radius sm">脂肪:{{item.fat}}</view>
+                  <view class="cu-tag radius sm">碳水:{{item.carbohydrate}}</view>
+                  <view class="cu-tag radius sm">蛋白质:{{item.protein}}</view>
+                </view>
+                <view class="weui-media-box__info">
+                  <view class="weui-media-box__info__meta">{{item.eat_time}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">品牌:{{item.brand}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">食用量: {{item.unit_name}} * {{item.eat_num}}</view>
+                </view>
+              </view>
+            </navigator>
           </view>
 
           <view class="weui-panel__ft">
-            <view class="weui-cell weui-cell_access weui-cell_link">
-              <view class="weui-cell__bd text-green">添加晚餐</view>
-              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </view>
+            <navigator url="/pages/search/search" >
+              <view class="weui-cell weui-cell_access weui-cell_link">
+                <view class="weui-cell__bd text-green">添加晚餐</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </view>
+            </navigator>
           </view>
 
         </view>
         <view class="weui-panel__bd" hidden="{{activeIndex != 3}}">
 
-          <view class="weui-media-box weui-media-box_text">
-            <view class="weui-media-box__title weui-media-box__title_in-text">青椒土豆丝</view>
-            <view class="weui-media-box__desc">
-              <view class="cu-tag radius sm">热量:30</view>
-              <view class="cu-tag radius sm">脂肪:30</view>
-              <view class="cu-tag radius sm">碳水:30</view>
-              <view class="cu-tag radius sm">蛋白质:30</view>
-            </view>
-            <view class="weui-media-box__info">
-              <view class="weui-media-box__info__meta">单位: 500克</view>
-              <view class="weui-media-box__info__meta">数量: 1 </view>
-              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">2019-05-25 12:06</view>
-            </view>
+          <view wx:for="{{eat.snacks}}" wx:key="unique">
+            <navigator url="/pages/food/food?id={{item.fid}}&cid={{item.id}}">
+              <view class="weui-media-box weui-media-box_text">
+                <view class="weui-media-box__title weui-media-box__title_in-text">{{item.food_name}}</view>
+                <view class="weui-media-box__desc">
+                  <view class="cu-tag radius sm">热量:{{item.calorie}}</view>
+                  <view class="cu-tag radius sm">脂肪:{{item.fat}}</view>
+                  <view class="cu-tag radius sm">碳水:{{item.carbohydrate}}</view>
+                  <view class="cu-tag radius sm">蛋白质:{{item.protein}}</view>
+                </view>
+                <view class="weui-media-box__info">
+                  <view class="weui-media-box__info__meta">{{item.eat_time}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">品牌:{{item.brand}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">食用量: {{item.unit_name}} * {{item.eat_num}}</view>
+                </view>
+              </view>
+            </navigator>
           </view>
 
+
           <view class="weui-panel__ft">
-            <view class="weui-cell weui-cell_access weui-cell_link">
-              <view class="weui-cell__bd text-green">添加零食</view>
-              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </view>
+            <navigator url="/pages/search/search" >
+              <view class="weui-cell weui-cell_access weui-cell_link">
+                <view class="weui-cell__bd text-green">添加零食</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </view>
+            </navigator>
           </view>
 
         </view>

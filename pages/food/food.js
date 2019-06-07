@@ -44,13 +44,13 @@ Page({
       "food_id":parseInt(this.data.foodId),
       "unit_name": this.data.result.components[this.data.unitsCheckedIndex].unit_name,
       "unit_id": parseInt(this.data.result.components[this.data.unitsCheckedIndex].id),
-      "eat_type":e.detail.value.eat_type,
+      "eat_type":parseInt(e.detail.value.eat_type),
       "eat_time":e.detail.value.eat_time,
       "eat_num":parseInt(e.detail.value.eat_num)
     }
     console.log(params)
     wx.request({
-      url: Api.addEat(),
+      url: Api.Eat(),
       data:params,
       method:"POST",
       dataType:"json",

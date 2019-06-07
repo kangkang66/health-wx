@@ -13,14 +13,14 @@ function _obj2uri(obj){
 }
 
 function _search(o) {
-    return  HOST_URI + '/search?' + _obj2uri(o);
+    return  HOST_URI + '/food/search?' + _obj2uri(o);
 }
 
 function _info(o) {
-    return HOST_URI + "/info?" + _obj2uri(o);
+    return HOST_URI + "/food/info?" + _obj2uri(o);
 }
 
-function _addEat(o) {
+function _eat(o) {
     return HOST_URI + "/eat?" + _obj2uri(o);
 }
 
@@ -31,6 +31,6 @@ function _wxLogin(o) {
 module.exports = {
     search: _search,
     info : _info,
-    addEat:_addEat,
+    Eat:_eat,
     wxLogin:_wxLogin,
 };

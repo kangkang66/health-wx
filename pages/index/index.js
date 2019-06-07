@@ -1,23 +1,22 @@
 var wxCharts = require('../../utils/wxcharts.js');
 var Api = require('../../utils/api.js');
 var columnChart = null;
-var chartData = {
-  main: {
-    title: '营养成分',
-    data: [15, 20, 45, 37],
-    data2: [10, 24, 35, 40],
-    categories: ['总热量', '碳水', '蛋白质', '脂肪']
-  }
-};
 Page({
   data: {
     //运动列表
     sports: ["静坐", "轻度运动", "中度运动", "重度运动","高强度运动"],
     //饮食类型
     tabs: ["早餐", "午餐", "晚餐", "零食"],
+    //列表切换
     activeIndex: 0,
     sliderOffset: 0,
-    sliderLeft: 0
+    sliderLeft: 0,
+    //目标数据
+    targetData:[0,0,0,0],
+    //当前数据
+    currentData:[0,0,0,0],
+    //食用列表
+    eat:{date:"",uid:"",eat_score:0,breakfast:[],lunch:[],dinner:[],snacks:[],score:{},exercise:1.37},
   },
   onLoad:function (e) {
     //登录
@@ -34,6 +33,21 @@ Page({
       },
       fail(res) {
         console.log(res)
+      }
+    })
+
+    //获取数据
+    var that = this
+    wx.request({
+      url:Api.Eat(),
+      success(res) {
+        console.log(res.data)
+        that.setData({
+          targetData:[res.data.score.calorie_target, res.data.score.fat_target, res.data.score.carbohydrate_target, res.data.score.protein_target],
+          currentData:[res.data.score.calorie_today, res.data.score.fat_today, res.data.score.carbohydrate_today, res.data.score.protein_today],
+          eat:res.data
+        })
+
       }
     })
   },
@@ -72,17 +86,17 @@ Page({
       canvasId: 'columnCanvas',
       type: 'column',
       animation: true,
-      categories: chartData.main.categories,
+      categories: ['总热量', '碳水', '蛋白质', '脂肪'],
       series: [{
         name: '目标营养',
-        data: chartData.main.data,
+        data: this.data.targetData,
         format: function (val, name) {
           //return val.toFixed(2);
           return val;
         }
       }, {
         name: '今日营养',
-        data: chartData.main.data2,
+        data: this.data.currentData,
         format: function (val, name) {
           return val;
         }
