@@ -1,4 +1,5 @@
-var HOST_URI = 'http://127.0.0.1:2018';
+//var HOST_URI = 'http://127.0.0.1:2018';
+var HOST_URI = 'http://eat666.club';
 
 function _obj2uri(obj){
     if (obj == null) {

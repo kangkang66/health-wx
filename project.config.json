@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -61,6 +61,12 @@
 					"name": "info",
 					"pathName": "pages/info/info",
 					"query": "uid=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "eat-history",
+					"pathName": "pages/eat-history/eat-history",
 					"scene": null
 				}
 			]

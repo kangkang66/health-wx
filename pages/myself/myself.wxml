@@ -34,7 +34,7 @@
 
   <view class="cu-list menu card-menu margin-top margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow">
-      <navigator class="content" hover-class="none">
+      <navigator class="content" hover-class="none" url="/pages/eat-history/eat-history">
         <text class="cuIcon-formfill text-green"></text>
         <text class="text-grey">饮食历史</text>
       </navigator>

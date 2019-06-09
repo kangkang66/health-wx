@@ -5,7 +5,7 @@
     "pages/food/food",
     "pages/myself/myself",
     "pages/info/info",
-    "pages/test/test"
+    "pages/eat-history/eat-history"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
