@@ -16,7 +16,7 @@ function _search(o) {
     return  HOST_URI + '/food/search?' + _obj2uri(o);
 }
 
-function _info(o) {
+function _foodInfo(o) {
     return HOST_URI + "/food/info?" + _obj2uri(o);
 }
 
@@ -32,10 +32,15 @@ function _exercise(o) {
     return HOST_URI + "/exercise?" + _obj2uri(o);
 }
 
+function _userInfo(o) {
+    return HOST_URI + "/user/info?" + _obj2uri(o);
+}
+
 module.exports = {
     search: _search,
-    info : _info,
+    foodInfo : _foodInfo,
     Eat:_eat,
     wxLogin:_wxLogin,
     Exercise:_exercise,
+    userInfo:_userInfo,
 };

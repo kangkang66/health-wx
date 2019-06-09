@@ -61,7 +61,7 @@
     </view>
 </view>
 
-<form   bindsubmit="formSubmit">
+<form bindsubmit="formSubmit">
     <view class="cu-form-group margin-top">
         <view class="title">餐类</view>
         <picker name="eat_type" value="{{eatTypeIndex}}" bindchange="eatTypeChange" range="{{eatTypes}}">
@@ -82,7 +82,7 @@
 
     <view class="cu-form-group">
         <view class="title">食用数量</view>
-        <input name="eat_num" value="1" placeholder="食用的数量"></input>
+        <input name="eat_num" type="number" value="1" placeholder="食用的数量"></input>
     </view>
 
 

@@ -1,5 +1,4 @@
 var Api = require('../../utils/api.js');
-
 Page({
   data: {
     inputShowed: true,
@@ -23,23 +22,24 @@ Page({
     });
   },
   inputTyping: function (e) {
-    console.log(e.detail.value)
+    wx.showLoading({
+      title: '加载中',
+    })
     this.setData({
       inputVal: e.detail.value
     });
-    this.fetchData({q:e.detail.value})
-  },
-
-  fetchData: function(params) {
     var that = this
     wx.request({
-      url: Api.search(params),
+      url: Api.search({q:e.detail.value}),
       success: function(res) {
         console.log(res.data)
         that.setData({
-          result : res.data
+          result : res.data,
+          loadProgress: 100
         });
+        wx.hideLoading()
       }
     })
-  },
+
+  }
 });

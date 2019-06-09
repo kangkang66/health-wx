@@ -1,10 +1,5 @@
 var Api = require('../../utils/api.js');
-
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     foodId:0,
     eatTypes: ['早餐', '午餐', '中餐', '零食'],
@@ -39,7 +34,7 @@ Page({
     })
   },
   formSubmit: function(e) {
-    //todo 添加进食
+    //添加进食
     var params = {
       "food_id":parseInt(this.data.foodId),
       "unit_name": this.data.result.components[this.data.unitsCheckedIndex].unit_name,
@@ -56,6 +51,16 @@ Page({
       dataType:"json",
       success: function(res) {
         console.log(res.data)
+        wx.showToast({
+          title: '已完成',
+          icon: 'success',
+          duration: 4000,
+          complete:function () {
+            wx.switchTab({
+              url:"/pages/index/index"
+            })
+          }
+        });
       }
     })
   },
@@ -63,16 +68,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+    })
+
     this.setData({foodId:options.id})
     console.log(options)
     var that = this
     wx.request({
-      url: Api.info({id:options.id}),
+      url: Api.foodInfo({id:options.id}),
       success: function(res) {
         console.log(res.data)
         that.setData({
           result : res.data
         });
+        wx.hideLoading()
       }
     })
   },

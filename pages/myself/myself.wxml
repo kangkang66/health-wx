@@ -1,0 +1,56 @@
+<!--logs.wxml-->
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <open-data type="userAvatarUrl" class="cu-avatar xl radius bg-white" ></open-data>
+    <open-data type="userNickName" class="text-xxl text-green"></open-data>
+  </view>
+
+  <view class="padding flex text-center text-grey bg-white shadow-warp">
+    <view class="flex flex-sub flex-direction solid-right">
+      <navigator hover-class="none" url="/pages/info/info">
+        <view class="text-xxl text-orange">{{userInfo.height}}<text class="text-xs">cm</text></view>
+        <view class="margin-top-sm">
+          <text class="cuIcon-attentionfill"></text>身高
+        </view>
+      </navigator>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+      <navigator hover-class="none" url="/pages/info/info">
+        <view class="text-xxl text-blue">{{userInfo.weight}}<text class="text-xs">公斤</text></view>
+        <view class="margin-top-sm">
+          <text class="cuIcon-favorfill"></text>体重
+        </view>
+      </navigator>
+    </view>
+    <view class="flex flex-sub flex-direction">
+      <navigator hover-class="none" url="/pages/info/info">
+        <view class="text-xxl text-green">{{userInfo.age}}<text class="text-xs">岁</text></view>
+        <view class="margin-top-sm">
+          <text class="cuIcon-fork"></text>年龄
+        </view>
+      </navigator>
+    </view>
+  </view>
+
+  <view class="cu-list menu card-menu margin-top margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <navigator class="content" hover-class="none">
+        <text class="cuIcon-formfill text-green"></text>
+        <text class="text-grey">饮食历史</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" hover-class="none" url="/pages/info/info">
+        <text class="cuIcon-people text-green"></text>
+        <text class="text-grey">个人信息</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-lightfill text-green"></text>
+        <text class="text-grey">问题反馈</text>
+      </button>
+    </view>
+  </view>
+
+</scroll-view>
