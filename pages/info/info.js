@@ -33,7 +33,6 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: function(res) {
-              console.log(res.userInfo)
               that.updateUserInfo(res.userInfo)
               that.setData({
                 wxInfoNo:false
@@ -43,6 +42,29 @@ Page({
         }
       }
     })
+
+    //初始化用户数据
+    wx.request({
+      url:Api.userInfo(),
+      success(res) {
+        console.log(res.data)
+        var hidx  = that.data.height.indexOf(res.data.height)
+        var hv = [hidx]
+
+        var widx = that.data.weight.indexOf(res.data.weight)
+        var wv = [widx]
+
+        var aidx = that.data.age.indexOf(parseInt(res.data.age))
+        var av = [aidx]
+        that.setData({
+          heightValue:hv,
+          weightValue:wv,
+          ageValue:av
+        })
+      }
+    })
+
+
   },
   numSteps() {
     //最后一步提交数据

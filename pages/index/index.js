@@ -24,6 +24,11 @@ Page({
     eat:{date:"",uid:"",eat_score:0,breakfast:[],lunch:[],dinner:[],snacks:[],score:{},exercise:1.37},
   },
   onLoad:function (e) {
+    var openid = wx.getStorageSync("openid")
+    if (openid !== "") {
+      console.log("openid",openid)
+      return
+    }
     //登录
     var that = this
     wx.login({

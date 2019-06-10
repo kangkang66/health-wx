@@ -1,5 +1,4 @@
-//var HOST_URI = 'http://127.0.0.1:2018';
-var HOST_URI = 'http://eat666.club';
+var HOST_URI = 'http://127.0.0.1:2018';
 
 function _obj2uri(obj){
     if (obj == null) {
@@ -25,6 +24,10 @@ function _eat(o) {
     return HOST_URI + "/eat?" + _obj2uri(o);
 }
 
+function _eatDates(o) {
+    return HOST_URI + "/eat/dates?" + _obj2uri(o);
+}
+
 function _wxLogin(o) {
     return HOST_URI + "/wx/login?" + _obj2uri(o);
 }
@@ -41,6 +44,7 @@ module.exports = {
     search: _search,
     foodInfo : _foodInfo,
     Eat:_eat,
+    EatDates:_eatDates,
     wxLogin:_wxLogin,
     Exercise:_exercise,
     userInfo:_userInfo,

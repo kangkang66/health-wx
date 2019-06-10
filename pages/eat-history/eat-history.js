@@ -1,66 +1,48 @@
 // pages/eat-history/eat-history.js
+var Api = require('../../utils/api.js');
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    addMoreText:"点击加载更多...",
+    eatDates:[],
+    result : []
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    var that = this
+    wx.request({
+      url : Api.EatDates(),
+      success(res) {
+        that.setData({
+          eatDates:res.data
+        })
+        that.getData()
+      }
+    })
   },
+  getData : function () {
+    var day = this.data.eatDates.pop()
+    if (!day) {
+      this.setData({
+        addMoreText:"没有数据了😁"
+      })
+      return
+    }
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+    var that = this
+    wx.request({
+      url : Api.Eat({"day":day}),
+      success(res) {
+        res.data.date = res.data.date.slice(5)
+        var tempArr = that.data.result
+        tempArr.push(res.data)
+        that.setData({
+          result:tempArr
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  addMore : function () {
+    this.getData()
   }
+
 })
