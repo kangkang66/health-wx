@@ -38,11 +38,12 @@
 
 <view class="flex p-xs mb-sm">
   <view class="flex-sub bg-white padding-sm radius">
+
     <view class="weui-tab">
       <view class="weui-navbar">
         <block wx:for="{{tabs}}" wx:key="*this">
           <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
-            <view class="weui-navbar__title text-bold">{{item}}</view>
+            <view class="weui-navbar__title">{{item}}</view>
           </view>
         </block>
       </view>
@@ -52,7 +53,7 @@
 
           <view class="cu-list menu">
             <view wx:for="{{eat.breakfast}}" wx:key="unique" class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-              <navigator hover-class="none" url="/pages/food/food?id={{item.fid}}&cid={{item.id}}">
+              <navigator hover-class="none" url="/pages/food/food?id={{item.fid}}">
                 <view class="weui-media-box weui-media-box_text">
                   <view class="weui-media-box__title weui-media-box__title_in-text">{{item.food_name}}</view>
                   <view class="weui-media-box__desc">
@@ -68,12 +69,12 @@
                 </view>
               </navigator>
               <view class="move">
-                <view class="bg-red">删除</view>
+                <view class="bg-red" bindtap="eatDelete" data-eat-id="{{item.eat_id}}">删除</view>
               </view>
             </view>
           </view>
           <view class="weui-panel__ft">
-            <navigator url="/pages/search/search" >
+            <navigator url="/pages/search/search?eat_type=0" >
               <view class="weui-cell weui-cell_access weui-cell_link">
                 <view class="weui-cell__bd text-green">添加早餐</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -86,7 +87,7 @@
 
           <view class="cu-list menu">
             <view wx:for="{{eat.lunch}}" wx:key="unique" class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-              <navigator hover-class="none" url="/pages/food/food?id={{item.fid}}&cid={{item.id}}">
+              <navigator hover-class="none" url="/pages/food/food?id={{item.fid}}">
                 <view class="weui-media-box weui-media-box_text">
                   <view class="weui-media-box__title weui-media-box__title_in-text">{{item.food_name}}</view>
                   <view class="weui-media-box__desc">
@@ -102,12 +103,12 @@
                 </view>
               </navigator>
               <view class="move">
-                <view class="bg-red">删除</view>
+                <view class="bg-red" bindtap="eatDelete" data-eat-id="{{item.eat_id}}">删除</view>
               </view>
             </view>
           </view>
           <view class="weui-panel__ft">
-            <navigator url="/pages/search/search" >
+            <navigator url="/pages/search/search?eat_type=1" >
               <view class="weui-cell weui-cell_access weui-cell_link">
                 <view class="weui-cell__bd text-green">添加午餐</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -120,7 +121,7 @@
 
           <view class="cu-list menu">
             <view wx:for="{{eat.dinner}}" wx:key="unique" class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-              <navigator hover-class="none" url="/pages/food/food?id={{item.fid}}&cid={{item.id}}">
+              <navigator hover-class="none" url="/pages/food/food?id={{item.fid}}">
                 <view class="weui-media-box weui-media-box_text">
                   <view class="weui-media-box__title weui-media-box__title_in-text">{{item.food_name}}</view>
                   <view class="weui-media-box__desc">
@@ -136,12 +137,12 @@
                 </view>
               </navigator>
               <view class="move">
-                <view class="bg-red">删除</view>
+                <view class="bg-red" bindtap="eatDelete" data-eat-id="{{item.eat_id}}">删除</view>
               </view>
             </view>
           </view>
           <view class="weui-panel__ft">
-            <navigator url="/pages/search/search" >
+            <navigator url="/pages/search/search?eat_type=2" >
               <view class="weui-cell weui-cell_access weui-cell_link">
                 <view class="weui-cell__bd text-green">添加晚餐</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -154,7 +155,7 @@
 
           <view class="cu-list menu">
             <view wx:for="{{eat.snacks}}" wx:key="unique" class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-              <navigator hover-class="none" url="/pages/food/food?id={{item.fid}}&cid={{item.id}}">
+              <navigator hover-class="none" url="/pages/food/food?id={{item.fid}}">
                 <view class="weui-media-box weui-media-box_text">
                   <view class="weui-media-box__title weui-media-box__title_in-text">{{item.food_name}}</view>
                   <view class="weui-media-box__desc">
@@ -170,12 +171,12 @@
                 </view>
               </navigator>
               <view class="move">
-                <view class="bg-red">删除</view>
+                <view class="bg-red" bindtap="eatDelete" data-eat-id="{{item.eat_id}}">删除</view>
               </view>
             </view>
           </view>
           <view class="weui-panel__ft">
-            <navigator url="/pages/search/search" >
+            <navigator url="/pages/search/search?eat_type=3" >
               <view class="weui-cell weui-cell_access weui-cell_link">
                 <view class="weui-cell__bd text-green">添加零食</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>

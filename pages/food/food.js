@@ -2,8 +2,10 @@ var Api = require('../../utils/api.js');
 Page({
   data: {
     foodId:0,
-    eatTypes: ['早餐', '午餐', '中餐', '零食'],
+    eatTypes: ['早餐', '午餐', '晚餐', '零食'],
     eatTypeIndex:0,
+    eatNums:[1,2,3,4,5,6,7,8,9,10],
+    eatNumIndex:0,
     time: '08:00',
     unitsCheckedIndex:0,
     result : {id:0,name:"未知",components:[],href:""},
@@ -16,6 +18,11 @@ Page({
   eatTypeChange(e){
     this.setData({
       eatTypeIndex: e.detail.value
+    })
+  },
+  eatNumChange(e){
+    this.setData({
+      eatNumIndex: e.detail.value
     })
   },
   showModal(e) {
@@ -41,9 +48,10 @@ Page({
       "unit_id": parseInt(this.data.result.components[this.data.unitsCheckedIndex].id),
       "eat_type":parseInt(e.detail.value.eat_type),
       "eat_time":e.detail.value.eat_time,
-      "eat_num":parseInt(e.detail.value.eat_num)
+      "eat_num":parseInt(e.detail.value.eat_num)+1
     }
-    console.log(params)
+    console.log("params",params)
+
     wx.request({
       url: Api.Eat(),
       data:params,
@@ -68,12 +76,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    if (! options.eat_type) {
+      options.eat_type = 0
+    }else{
+      options.eat_type = parseInt(options.eat_type)
+    }
     wx.showLoading({
       title: '加载中',
     })
 
-    this.setData({foodId:options.id})
-    console.log(options)
+    var eatTime = this.data.time
+    if (options.eat_type === 1) {
+      eatTime = "12:00"
+    }else if(options.eat_type === 2) {
+      eatTime = "18:30"
+    }else if(options.eat_type === 3) {
+      eatTime = "15:00"
+    }
+    this.setData({
+      foodId:options.id,
+      eatTypeIndex:options.eat_type,
+      time:eatTime
+    })
+
     var that = this
     wx.request({
       url: Api.foodInfo({id:options.id}),

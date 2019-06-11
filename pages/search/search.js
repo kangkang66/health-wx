@@ -4,6 +4,15 @@ Page({
     inputShowed: true,
     inputVal: "",
     result : [],
+    eatType:0,
+  },
+  onLoad(e) {
+    console.log("onload",e)
+    if (e.eat_type) {
+      this.setData({
+        eatType:e.eat_type
+      })
+    }
   },
   showInput: function () {
     this.setData({

@@ -19,7 +19,7 @@
         </view>
 
         <view class="weui-cells searchbar-result" wx:for="{{result.list}}" wx:key="unique">
-            <navigator url="/pages/food/food?id={{item.id}}" class="weui-cell" hover-class="weui-cell_active">
+            <navigator url="/pages/food/food?id={{item.id}}&eat_type={{eatType}}" class="weui-cell" hover-class="weui-cell_active">
                 <view class="weui-cell__bd">
                     <view>{{item.name}}</view>
                 </view>

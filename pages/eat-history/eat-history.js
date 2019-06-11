@@ -38,6 +38,11 @@ Page({
         that.setData({
           result:tempArr
         })
+        //如果是第一天，再加一天的数据
+        console.log(tempArr.length)
+        if (tempArr.length === 1) {
+          that.getData()
+        }
       }
     })
   },

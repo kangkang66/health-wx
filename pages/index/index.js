@@ -16,10 +16,6 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    //目标数据
-    targetData:[0,0,0,0],
-    //当前数据
-    currentData:[0,0,0,0],
     //食用列表
     eat:{date:"",uid:"",eat_score:0,breakfast:[],lunch:[],dinner:[],snacks:[],score:{},exercise:1.37},
 
@@ -30,7 +26,22 @@ Page({
   onLoad:function (e) {
     var openid = wx.getStorageSync("openid")
     if (openid !== "") {
-      console.log("openid",openid)
+      wx.getWeRunData({
+        success (res) {
+          wx.request({
+            url:Api.Run(),
+            method:"POST",
+            data:res,
+            success(res2) {
+              console.log("run",res,res2)
+            }
+          })
+        },
+        fail(res) {
+          console.log("run fail",res)
+        }
+      })
+
       return
     }
     //登录
@@ -44,7 +55,7 @@ Page({
           success: function(res) {
             console.log(res.data)
             wx.setStorageSync("openid", res.data.openid)
-            if (res.data.height==0 || res.data.weight==0) {
+            if (res.data.height===0 || res.data.weight===0) {
               //新用户引导填充信息
               wx.redirectTo({url:"/pages/info/info"})
             }else{
@@ -73,12 +84,13 @@ Page({
       url:Api.Eat(),
       success(res) {
         console.log(res.data)
-        var idx = that.data.sportsVal.indexOf(res.data.exercise)
-        idx == -1 ? 0:idx
+        if (res.data.error_code) {
+          console.log("request error ",res.data)
+          return
+        }
+
         that.setData({
-          sportIndex:idx,
-          targetData:[res.data.score.calorie_target, res.data.score.fat_target, res.data.score.carbohydrate_target, res.data.score.protein_target],
-          currentData:[res.data.score.calorie_today, res.data.score.fat_today, res.data.score.carbohydrate_today, res.data.score.protein_today],
+          sportIndex:that.data.sportsVal.indexOf(res.data.exercise),
           eat:res.data
         })
         targetData = [res.data.score.calorie_target, res.data.score.fat_target, res.data.score.carbohydrate_target, res.data.score.protein_target]
@@ -166,7 +178,7 @@ Page({
   },
   // ListTouch触摸开始
   ListTouchStart(e) {
-    console.log("ListTouchStart",e.touches)
+    //console.log("ListTouchStart",e.touches)
     this.setData({
       ListTouchStart: e.touches[0].pageX
     })
@@ -174,7 +186,7 @@ Page({
 
   // ListTouch计算方向
   ListTouchMove(e) {
-    console.log("ListTouchMove",e.touches)
+    //console.log("ListTouchMove",e.touches)
     this.setData({
       ListTouchDirection: e.touches[0].pageX - this.data.ListTouchStart > -100 ? 'right' : 'left'
     })
@@ -182,7 +194,7 @@ Page({
 
   // ListTouch计算滚动
   ListTouchEnd(e) {
-    console.log("end",e,this.data.ListTouchDirection)
+    //console.log("end",e,this.data.ListTouchDirection)
     if (this.data.ListTouchDirection ==='left'){
       this.setData({
         modalName: e.currentTarget.dataset.target
@@ -194,6 +206,18 @@ Page({
     }
     this.setData({
       ListTouchDirection: null
+    })
+  },
+  eatDelete(e) {
+    console.log("del",e)
+    var that = this
+    wx.request({
+      url:Api.Eat({eat_id:e.currentTarget.dataset.eatId}),
+      method:"DELETE",
+      success(res) {
+        console.log(res)
+        that.indexData()
+      }
     })
   },
 });
