@@ -1,4 +1,5 @@
-var HOST_URI = 'http://127.0.0.1:2018';
+//var HOST_URI = 'http://127.0.0.1:2018';
+var HOST_URI = 'http://47.100.36.14';
 
 function _obj2uri(obj){
     if (obj == null) {
@@ -44,6 +45,10 @@ function _userInfo(o) {
     return HOST_URI + "/user/info?" + _obj2uri(o);
 }
 
+function _scanCode(o) {
+    return HOST_URI + "/scan/code?" + _obj2uri(o);
+}
+
 module.exports = {
     search: _search,
     foodInfo : _foodInfo,
@@ -53,4 +58,5 @@ module.exports = {
     Exercise:_exercise,
     Run:_run,
     userInfo:_userInfo,
+    scanCode:_scanCode
 };

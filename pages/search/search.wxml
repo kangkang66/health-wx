@@ -2,6 +2,9 @@
 <view class="page">
     <view class="page__bd">
         <view class="weui-search-bar">
+            <button class="cu-btn icon" bindtap="scan" style="height: auto;">
+                <text class="cuIcon-camera"></text>
+            </button>
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
                     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>

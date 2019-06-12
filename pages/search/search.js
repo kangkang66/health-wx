@@ -1,4 +1,6 @@
 var Api = require('../../utils/api.js');
+var erWeiMa = ['QR_CODE','DATA_MATRIX','PDF_417','WX_CODE']
+
 Page({
   data: {
     inputShowed: true,
@@ -49,6 +51,28 @@ Page({
         wx.hideLoading()
       }
     })
-
+  },
+  scan(e){
+    console.log("scan")
+    var that = this
+    wx.scanCode({
+      success(res) {
+        if (erWeiMa.indexOf(res.scanType) !== -1) {
+          wx.showToast({
+            title:"请扫描商品条形码",
+            icon:"none"
+          })
+        }else{
+          console.log(res.result)
+          wx.request({
+            url:Api.scanCode({code:res.result}),
+            success(res) {
+              var e = {detail:{value:res.data.name}}
+              that.inputTyping(e)
+            }
+          })
+        }
+      }
+    })
   }
 });

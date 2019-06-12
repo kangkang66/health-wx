@@ -89,9 +89,24 @@ Page({
           return
         }
 
+        var tempTabs = ["早餐", "午餐", "晚餐", "零食"]
+        if (res.data.breakfast.length > 0) {
+          tempTabs[0] += "("+ res.data.breakfast.length +")"
+        }
+        if (res.data.lunch.length > 0) {
+          tempTabs[1] += "("+ res.data.lunch.length +")"
+        }
+        if (res.data.dinner.length > 0) {
+          tempTabs[2] += "("+ res.data.dinner.length +")"
+        }
+        if (res.data.snacks.length > 0) {
+          tempTabs[3] += "("+ res.data.snacks.length +")"
+        }
+
         that.setData({
+          eat:res.data,
           sportIndex:that.data.sportsVal.indexOf(res.data.exercise),
-          eat:res.data
+          tabs:tempTabs
         })
         targetData = [res.data.score.calorie_target, res.data.score.fat_target, res.data.score.carbohydrate_target, res.data.score.protein_target]
         currentData = [res.data.score.calorie_today, res.data.score.fat_today, res.data.score.carbohydrate_today, res.data.score.protein_today]
