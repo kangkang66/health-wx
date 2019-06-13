@@ -59,7 +59,7 @@ Page({
           fail(res) {
             wx.showToast({
               title:"服务器出错",
-              icon:none,
+              icon:"none",
             })
           }
         })
@@ -109,9 +109,10 @@ Page({
         wx.stopPullDownRefresh()
       },
       fail(res) {
+        console.log(res)
         wx.showToast({
           title:"服务器出错",
-          icon:none,
+          icon:"none"
         })
       }
     })
@@ -143,7 +144,7 @@ Page({
       fail(res) {
         wx.showToast({
           title:"服务器出错",
-          icon:none,
+          icon:"none",
         })
       }
     })
@@ -241,7 +242,7 @@ Page({
       fail(res) {
         wx.showToast({
           title:"服务器出错",
-          icon:none,
+          icon:"none",
         })
       }
     })
