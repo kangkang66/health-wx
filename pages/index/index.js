@@ -23,48 +23,44 @@ Page({
     ListTouchDirection:"",
     modalName:null,
   },
+  onShow:function(){
+    var openid = wx.getStorageSync("openid")
+    if (openid === "") {
+      console.log("onShow no openid")
+      return
+    }
+    this.indexData()
+  },
   onLoad:function (e) {
     var openid = wx.getStorageSync("openid")
     if (openid !== "") {
-      wx.getWeRunData({
-        success (res) {
-          wx.request({
-            url:Api.Run(),
-            method:"POST",
-            data:res,
-            success(res2) {
-              console.log("run",res,res2)
-            }
-          })
-        },
-        fail(res) {
-          console.log("run fail",res)
-        }
-      })
-
       return
     }
     //登录
     var that = this
     wx.login({
       success (res) {
-        console.log(res)
         //请求后端登录
         wx.request({
           url: Api.wxLogin({code: res.code}),
           success: function(res) {
             console.log(res.data)
             wx.setStorageSync("openid", res.data.openid)
+            //新用户引导填充信息
             if (res.data.height===0 || res.data.weight===0) {
-              //新用户引导填充信息
               wx.redirectTo({url:"/pages/info/info"})
             }else{
-              console.log("hello", that.data.eat)
               if(that.data.eat.uid === "") {
                 //登录成功获取首页数据. 防止和onShow重复拉取，因为先执行onShow
                 that.indexData()
               }
             }
+          },
+          fail(res) {
+            wx.showToast({
+              title:"服务器出错",
+              icon:none,
+            })
           }
         })
       },
@@ -73,17 +69,12 @@ Page({
       }
     })
   },
-  onShow:function(){
-    //每次进入这个页面都需要刷新
-    this.indexData()
-  },
   indexData: function () {
     //获取数据
     var that = this
     wx.request({
       url:Api.Eat(),
       success(res) {
-        console.log(res.data)
         if (res.data.error_code) {
           console.log("request error ",res.data)
           return
@@ -110,10 +101,18 @@ Page({
         })
         targetData = [res.data.score.calorie_target, res.data.score.fat_target, res.data.score.carbohydrate_target, res.data.score.protein_target]
         currentData = [res.data.score.calorie_today, res.data.score.fat_today, res.data.score.carbohydrate_today, res.data.score.protein_today]
+
         //绘图
         that.canvas()
+
         //停止下拉刷新动画
         wx.stopPullDownRefresh()
+      },
+      fail(res) {
+        wx.showToast({
+          title:"服务器出错",
+          icon:none,
+        })
       }
     })
   },
@@ -140,6 +139,12 @@ Page({
         console.log(res)
         //重新渲染数据
         wx.startPullDownRefresh()
+      },
+      fail(res) {
+        wx.showToast({
+          title:"服务器出错",
+          icon:none,
+        })
       }
     })
 
@@ -232,6 +237,12 @@ Page({
       success(res) {
         console.log(res)
         that.indexData()
+      },
+      fail(res) {
+        wx.showToast({
+          title:"服务器出错",
+          icon:none,
+        })
       }
     })
   },
