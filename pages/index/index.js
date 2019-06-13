@@ -13,15 +13,18 @@ Page({
     //饮食类型
     tabs: ["早餐", "午餐", "晚餐", "零食"],
     //列表切换
-    activeIndex: 0,
-    sliderOffset: 0,
-    sliderLeft: 0,
+    TabCur: 0,
     //食用列表
     eat:{date:"",uid:"",eat_score:0,breakfast:[],lunch:[],dinner:[],snacks:[],score:{},exercise:1.37},
 
     ListTouchStart:0,
     ListTouchDirection:"",
     modalName:null,
+  },
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id
+    })
   },
   onShow:function(){
     var openid = wx.getStorageSync("openid")
@@ -120,12 +123,6 @@ Page({
   onPullDownRefresh: function() {
     console.log("pull down")
     this.indexData();
-  },
-  tabClick: function (e) {
-    this.setData({
-      sliderOffset: e.currentTarget.offsetLeft,
-      activeIndex: e.currentTarget.id
-    });
   },
   bindSportChange : function(e) {
     this.setData({

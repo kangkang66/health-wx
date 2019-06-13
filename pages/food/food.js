@@ -52,6 +52,10 @@ Page({
     }
     console.log("params",params)
 
+    wx.showLoading({
+      title: '添加中',
+    })
+
     wx.request({
       url: Api.Eat(),
       data:params,
