@@ -35,19 +35,25 @@
   <view class="cu-list menu card-menu margin-top margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow">
       <navigator class="content" hover-class="none" url="/pages/eat-history/eat-history">
-        <text class="cuIcon-formfill text-green"></text>
+        <text class="cuIcon-form text-green"></text>
         <text class="text-grey">饮食历史</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
       <navigator class="content" hover-class="none" url="/pages/info/info">
-        <text class="cuIcon-people text-green"></text>
-        <text class="text-grey">个人信息</text>
+        <text class="cuIcon-repair text-green"></text>
+        <text class="text-grey">个人设置</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="contact" session-from="weapp">
+        <text class="cuIcon-service text-green"></text>
+        <text class="text-grey">联系客服</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
       <button class="cu-btn content" open-type="feedback">
-        <text class="cuIcon-lightfill text-green"></text>
+        <text class="cuIcon-light text-green"></text>
         <text class="text-grey">问题反馈</text>
       </button>
     </view>
