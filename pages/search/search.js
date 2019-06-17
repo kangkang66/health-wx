@@ -5,8 +5,10 @@ Page({
   data: {
     inputShowed: true,
     inputVal: "",
-    result : [],
+    result : {"total":0,"list":[]},
     eatType:0,
+    eatRank:[],
+    eatCurrent:[]
   },
   onLoad(e) {
     console.log("onload",e)
@@ -15,6 +17,26 @@ Page({
         eatType:e.eat_type
       })
     }
+
+    var that = this
+    //获取热搜
+    wx.request({
+      url:Api.EatRank(),
+      success(res) {
+        that.setData({
+          eatRank:res.data
+        })
+      }
+    })
+
+    wx.request({
+      url:Api.EatCurrent(),
+      success(res) {
+        that.setData({
+          eatCurrent:res.data
+        })
+      }
+    })
   },
   showInput: function () {
     this.setData({
@@ -24,7 +46,8 @@ Page({
   hideInput: function () {
     this.setData({
       inputVal: "",
-      inputShowed: false
+      inputShowed: false,
+      result:[]
     });
   },
   clearInput: function () {

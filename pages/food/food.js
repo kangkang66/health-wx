@@ -1,6 +1,8 @@
 var Api = require('../../utils/api.js');
 Page({
   data: {
+    //默认显示表单
+    hiddenAddForm:1,
     foodId:0,
     eatTypes: ['早餐', '午餐', '晚餐', '零食'],
     eatTypeIndex:0,
@@ -80,7 +82,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+
+    if (options.hidden_add_form) {
+      this.setData({
+        hiddenAddForm:0,
+      })
+    }
+
     if (! options.eat_type) {
       options.eat_type = 0
     }else{
@@ -115,6 +123,5 @@ Page({
         wx.hideLoading()
       }
     })
-  },
-
+  }
 })

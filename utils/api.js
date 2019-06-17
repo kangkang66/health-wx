@@ -1,5 +1,5 @@
-//var HOST_URI = 'http://127.0.0.1:2018';
-var HOST_URI = 'https://eat666.club';
+var HOST_URI = 'http://127.0.0.1:2018';
+//var HOST_URI = 'https://eat666.club';
 
 function _obj2uri(obj){
     if (obj == null) {
@@ -49,6 +49,14 @@ function _scanCode(o) {
     return HOST_URI + "/scan/code?" + _obj2uri(o);
 }
 
+function _eatRank(o) {
+    return HOST_URI + "/eat/rank?" + _obj2uri(o);
+}
+
+function _eatCurrent(o) {
+    return HOST_URI + "/eat/current?" + _obj2uri(o);
+}
+
 module.exports = {
     search: _search,
     foodInfo : _foodInfo,
@@ -58,5 +66,7 @@ module.exports = {
     Exercise:_exercise,
     Run:_run,
     userInfo:_userInfo,
-    scanCode:_scanCode
+    scanCode:_scanCode,
+    EatRank : _eatRank,
+    EatCurrent:_eatCurrent
 };

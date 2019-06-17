@@ -48,6 +48,9 @@ Page({
   },
   addMore : function () {
     this.getData()
+  },
+  onReachBottom(e){
+    this.getData()
   }
 
 })

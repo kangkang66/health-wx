@@ -2,7 +2,9 @@
 <view class="cu-timeline">
 
     <block wx:for="{{result}}" wx:key="unique">
-        <view class="cu-time text-black text-bold">{{item.date}}</view>
+        <navigator hover-class="none" url="/pages/eat-report/eat-report?date={{item.date}}">
+            <view class="cu-time text-black text-bold">{{item.date}}</view>
+        </navigator>
 
         <block wx:for="{{item.breakfast}}" wx:for-item="food" wx:key>
             <view class="cu-item text-grey cuIcon-evaluate_fill">
