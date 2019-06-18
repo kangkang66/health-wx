@@ -50,7 +50,7 @@ Page({
     this.setData({
       inputVal: "",
       inputShowed: false,
-      result:[]
+      result:{"total":0,"list":[]}
     });
   },
   clearInput: function () {
