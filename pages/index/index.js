@@ -26,6 +26,9 @@ Page({
       TabCur: e.currentTarget.dataset.id
     })
   },
+  onShareAppMessage(o){
+
+  },
   onShow:function(){
     var openid = wx.getStorageSync("openid")
     if (openid === "") {

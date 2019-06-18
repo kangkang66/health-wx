@@ -53,7 +53,6 @@ Page({
       "eat_num":parseInt(e.detail.value.eat_num)+1
     }
     console.log("params",params)
-
     wx.showLoading({
       title: '添加中',
     })
@@ -77,6 +76,9 @@ Page({
         });
       }
     })
+  },
+  onShareAppMessage(o){
+
   },
   /**
    * 生命周期函数--监听页面加载

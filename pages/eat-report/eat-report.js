@@ -38,6 +38,9 @@ Page({
     },
     eatScore : 0
   },
+  onShareAppMessage(o){
+
+  },
   onLoad(e){
     if (e.date) {
       var myDate = new Date();

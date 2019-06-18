@@ -7,6 +7,9 @@ Page({
     eatDates:[],
     result : []
   },
+  onShareAppMessage(o){
+
+  },
   onLoad: function (options) {
     var that = this
     wx.request({

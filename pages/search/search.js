@@ -2,6 +2,9 @@ var Api = require('../../utils/api.js');
 var erWeiMa = ['QR_CODE','DATA_MATRIX','PDF_417','WX_CODE']
 
 Page({
+    onShareAppMessage(o){
+
+    },
   data: {
     inputShowed: true,
     inputVal: "",
