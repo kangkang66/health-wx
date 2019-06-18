@@ -1,12 +1,10 @@
 <!--index.wxml-->
 
 <view class="padding-xs bg-white">
-  <navigator url="/pages/search/search?eat_type=0" >
-    <button class="cu-btn block round line-gray text-grey text-sm ">
-      <text class="cuIcon-search " style="margin-right: 10rpx;"></text>
-      搜索您感兴趣的食物
-    </button>
-  </navigator>
+  <button class="cu-btn block round line-gray text-grey text-sm " bindtap="goToSearch">
+    <text class="cuIcon-search " style="margin-right: 10rpx;"></text>
+    搜索您感兴趣的食物
+  </button>
 </view>
 
 <view class="cu-bar bg-white solid-bottom ">
@@ -34,9 +32,7 @@
   </view>
 
   <view class="action">
-    <navigator url="/pages/eat-report/eat-report" >
-      <button class="cu-btn bg-white shadow">详情</button>
-    </navigator>
+    <button class="cu-btn bg-white shadow" bindtap="goToEatReport">详情</button>
   </view>
 </view>
 

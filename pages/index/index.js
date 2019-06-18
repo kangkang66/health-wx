@@ -247,4 +247,14 @@ Page({
       }
     })
   },
+  goToSearch(e) {
+    wx.navigateTo({
+      url:"/pages/search/search?eat_type=0"
+    })
+  },
+  goToEatReport(e){
+    wx.navigateTo({
+      url:"/pages/eat-report/eat-report"
+    })
+  }
 });
