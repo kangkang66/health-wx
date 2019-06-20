@@ -18,9 +18,9 @@ var config = {
     yAxisTitleWidth: 15,
     padding: 12,
     columePadding: 3,
-    fontSize: 10,
+    fontSize: 8,
     dataPointShape: ['diamond', 'circle', 'triangle', 'rect'],
-    colors: ['#7cb5ec', '#f7a35c', '#434348', '#90ed7d', '#f15c80', '#8085e9'],
+    colors: ['#7cb5ec', '#f7a35c', '#434348', '#90ed7d', '#f15c80', '#8085e9', '#e54d42','#39b54a','#1cbbb4','#0081ff','#6739b6','#9c26b0','#e03997','#a5673f','#8799a3'],
     pieChartLinePadding: 25,
     pieChartTextPadding: 15,
     xAxisTextPadding: 3,
@@ -1075,7 +1075,7 @@ function drawColumnDataPoints(series, opts, config, context) {
                 var startX = item.x - item.width / 2 + 1;
                 var height = opts.height - item.y - config.padding - config.xAxisHeight - config.legendHeight;
                 context.moveTo(startX, item.y);
-                context.rect(startX, item.y, item.width - 2, height);
+                context.rect(startX, item.y, item.width - 4, height);
             }
         });
         context.closePath();
@@ -1527,6 +1527,7 @@ function drawPieDataPoints(series, opts, config, context) {
         context.setLineWidth(2);
         context.setStrokeStyle('#ffffff');
         context.setFillStyle(eachSeries.color);
+
         context.moveTo(centerPosition.x, centerPosition.y);
         context.arc(centerPosition.x, centerPosition.y, radius, eachSeries._start_, eachSeries._start_ + 2 * eachSeries._proportion_ * Math.PI);
         context.closePath();

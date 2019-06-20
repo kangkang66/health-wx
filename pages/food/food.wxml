@@ -84,7 +84,7 @@
     </view>
 </view>
 
-<form bindsubmit="formSubmit" hidden="{{hiddenAddForm==0}}">
+<form bindsubmit="formSubmit" hidden="{{hiddenAddForm==0}}" report-submit="true">
     <view class="cu-form-group ">
         <view class="title">餐类</view>
         <picker name="eat_type" value="{{eatTypeIndex}}" bindchange="eatTypeChange" range="{{eatTypes}}">
@@ -94,14 +94,6 @@
         </picker>
     </view>
 
-    <view class="cu-form-group">
-        <view class="title">食用时间</view>
-        <picker mode="time" name="eat_time" value="{{time}}" start="06:00" end="23:00" bindchange="TimeChange">
-            <view class="picker">
-                {{time}}
-            </view>
-        </picker>
-    </view>
 
     <view class="cu-form-group">
         <view class="title">食用数量</view>

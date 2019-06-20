@@ -43,14 +43,16 @@ Page({
     })
   },
   formSubmit: function(e) {
+    console.log(e)
     //添加进食
     var params = {
       "food_id":parseInt(this.data.foodId),
       "unit_name": this.data.result.components[this.data.unitsCheckedIndex].unit_name,
       "unit_id": parseInt(this.data.result.components[this.data.unitsCheckedIndex].id),
       "eat_type":parseInt(e.detail.value.eat_type),
-      "eat_time":e.detail.value.eat_time,
-      "eat_num":parseInt(e.detail.value.eat_num)+1
+      "eat_time":"08:00",
+      "eat_num":parseInt(e.detail.value.eat_num)+1,
+      "form_id":e.detail.formId
     }
     console.log("params",params)
     wx.showLoading({

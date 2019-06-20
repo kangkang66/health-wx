@@ -12,6 +12,17 @@
 
     <view class="flex solid-bottom padding justify-center" hidden="{{num != 0}}">
         <view class="padding-sm margin-xs radius text-center">
+            <picker-view style="width: 100%; height: 300px; " value="{{targetValue}}" bindchange="bindTargetChange">
+                <picker-view-column>
+                    <view wx:for="{{target}}"  wx:key>{{item}}</view>
+                </picker-view-column>
+            </picker-view>
+            <button class="cu-btn bg-green shadow" bindtap="numSteps">下一步</button>
+        </view>
+    </view>
+
+    <view class="flex solid-bottom padding justify-center" hidden="{{num != 1}}">
+        <view class="padding-sm margin-xs radius text-center">
             <picker-view style="width: 100%; height: 300px; " value="{{heightValue}}" bindchange="bindHeightChange">
                 <picker-view-column>
                     <view wx:for="{{height}}"  wx:key>{{item}}cm</view>
@@ -21,7 +32,7 @@
         </view>
     </view>
 
-    <view class="flex solid-bottom padding justify-center" hidden="{{num != 1}}">
+    <view class="flex solid-bottom padding justify-center" hidden="{{num != 2}}">
         <view class="padding-sm margin-xs radius text-center">
             <picker-view style="width: 100%; height: 300px; " value="{{weightValue}}" bindchange="bindWeightChange">
                 <picker-view-column>
@@ -32,7 +43,7 @@
         </view>
     </view>
 
-    <view class="flex solid-bottom padding justify-center" hidden="{{num != 2}}">
+    <view class="flex solid-bottom padding justify-center" hidden="{{num != 3}}">
         <view class="padding-sm margin-xs radius text-center">
             <picker-view style="width: 100%; height: 300px; " value="{{ageValue}}" bindchange="bindAgeChange">
                 <picker-view-column>
@@ -43,7 +54,7 @@
         </view>
     </view>
 
-    <view class="flex solid-bottom padding justify-center" hidden="{{num != 3}}">
+    <view class="flex solid-bottom padding justify-center" hidden="{{num != 4}}">
         <view class="padding-sm margin-xs radius text-center">
             <view class="text-xsl padding">
                 <text class=" cuIcon-roundcheckfill text-green"></text>

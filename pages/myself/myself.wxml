@@ -7,23 +7,31 @@
 
   <view class="padding flex text-center text-grey bg-white shadow-warp">
     <view class="flex flex-sub flex-direction solid-right">
-      <navigator hover-class="none" url="/pages/info/info">
-        <view class="text-xxl text-orange">{{userInfo.height}}<text class="text-xs">cm</text></view>
+      <navigator hover-class="none" url="/pages/info/info?num=0">
+        <view class="text-xxl text-purple">减肥</view>
         <view class="margin-top-sm">
-          <text class="cuIcon-attentionfill"></text>身高
+          <text class="cuIcon-hot"></text>目标
         </view>
       </navigator>
     </view>
     <view class="flex flex-sub flex-direction solid-right">
-      <navigator hover-class="none" url="/pages/info/info">
+      <navigator hover-class="none" url="/pages/info/info?num=1">
+        <view class="text-xxl text-orange">{{userInfo.height}}<text class="text-xs">cm</text></view>
+        <view class="margin-top-sm">
+          <text class="cuIcon-attention"></text>身高
+        </view>
+      </navigator>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+      <navigator hover-class="none" url="/pages/info/info?num=2">
         <view class="text-xxl text-blue">{{userInfo.weight}}<text class="text-xs">公斤</text></view>
         <view class="margin-top-sm">
-          <text class="cuIcon-favorfill"></text>体重
+          <text class="cuIcon-favor"></text>体重
         </view>
       </navigator>
     </view>
     <view class="flex flex-sub flex-direction">
-      <navigator hover-class="none" url="/pages/info/info">
+      <navigator hover-class="none" url="/pages/info/info?num=3">
         <view class="text-xxl text-green">{{userInfo.age}}<text class="text-xs">岁</text></view>
         <view class="margin-top-sm">
           <text class="cuIcon-fork"></text>年龄
